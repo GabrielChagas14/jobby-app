@@ -7,25 +7,27 @@
           header-bg-variant="primary"
           header-text-variant="white"
         >
-          <b-form @submit="onSubmit" @restet="onReset"> 
-            <b-form-group
-              id="name"
-              label="Email adress:"
-              label-for="input-name"
-            >
-              <b-form-input
-                id="input-email"
-                type="email"
-                placeholder="Enter e-mail"
-                required
-              >
-              </b-form-input>
-            </b-form-group>
+          <b-form @submit.prevent="onSubmit" @restet="onReset"> 
             <b-form-group id="name" label="Name:" label-for="input-name">
               <b-form-input
                 id="input-name"
                 type="text"
                 placeholder="Enter name"
+                required
+              >
+              </b-form-input>
+            </b-form-group>
+              <b-form-group
+              id="email"
+              label="Email adress:"
+              label-for="input-email"
+              v-model="form.name"
+            >
+              <b-form-input
+                id="input-email"
+                type="email"
+                placeholder="Enter e-mail"
+                v-model="form.email"
                 required
               >
               </b-form-input>
@@ -39,6 +41,7 @@
                 id="input-password"
                 type="password"
                 placeholder="Enter password"
+                v-model="form.password"
                 required
               >
               </b-form-input>
@@ -51,19 +54,27 @@
   </b-container>
 </template>
 <script>
+import UserService from '../services/user.service'
 export default {
+  mounted(){
+    UserService.listar().then(res => {
+      console.log(res.data)
+    })
+  },
   data() {
     return {
       form: {
-        email: '',
         name: '',
+        email: '',
         password: ''
       }
     }
   },
   methods: {
     onSubmit(){
-
+      UserService.register(this.form).then(res => {
+        console.log(res)
+      })
     },
     onReset(){
       this.form.email = ''
