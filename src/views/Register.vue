@@ -13,15 +13,16 @@
                 id="input-name"
                 type="text"
                 placeholder="Enter name"
+                v-model="form.name"
                 required
               >
               </b-form-input>
             </b-form-group>
               <b-form-group
               id="email"
-              label="Email adress:"
+              label="E-mail adress:"
               label-for="input-email"
-              v-model="form.name"
+              
             >
               <b-form-input
                 id="input-email"
@@ -72,6 +73,7 @@ export default {
   },
   methods: {
     onSubmit(){
+      console.log(this.form)
       UserService.register(this.form).then(res => {
         console.log(res)
       })
@@ -86,6 +88,8 @@ export default {
 </script>
 <style lang="scss">
 .form-container {
+  margin-top: 8px;
+}.form-container {
   margin-top: 8px;
 }
 .button-submit{
