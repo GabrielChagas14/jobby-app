@@ -7,8 +7,10 @@
           header-bg-variant="primary"
           header-text-variant="white"
         >
-          <b-form @submit.prevent="onSubmit" @restet="onReset"> 
-            <b-form-group id="name" label="Name:" label-for="input-name">
+          <b-form @submit.prevent="onSubmit" @restet="onReset">
+            
+            <font-awesome-icon icon="user" class="icon" /> Name:
+            <b-form-group>
               <b-form-input
                 id="input-name"
                 type="text"
@@ -18,12 +20,8 @@
               >
               </b-form-input>
             </b-form-group>
-              <b-form-group
-              id="email"
-              label="E-mail adress:"
-              label-for="input-email"
-              
-            >
+            <font-awesome-icon icon="envelope" class="icon" /> E-mail adress:
+            <b-form-group>
               <b-form-input
                 id="input-email"
                 type="email"
@@ -33,11 +31,8 @@
               >
               </b-form-input>
             </b-form-group>
-            <b-form-group
-              id="password"
-              label="Password:"
-              label-for="input-password"
-            >
+            <font-awesome-icon icon="lock" class="icon" /> Password:
+            <b-form-group>
               <b-form-input
                 id="input-password"
                 type="password"
@@ -47,52 +42,56 @@
               >
               </b-form-input>
             </b-form-group>
-            <b-button type="submit" variant="primary" class="button-submit">Submit</b-button>
+            <b-button type="submit" variant="primary" class="button-submit"
+              >Submit</b-button
+            >
             <b-button type="reset" variant="danger">Reset</b-button>
-          </b-form> </b-card
-      ></b-col>
+          </b-form>
+        </b-card></b-col
+      >
     </b-row>
   </b-container>
 </template>
 <script>
-import UserService from '../services/user.service'
+import UserService from "../services/user.service";
 export default {
-  mounted(){
-    UserService.listar().then(res => {
-      console.log(res.data)
-    })
+  mounted() {
+    UserService.listar().then((res) => {
+      console.log(res.data);
+    });
   },
   data() {
     return {
       form: {
-        name: '',
-        email: '',
-        password: ''
-      }
-    }
+        name: "",
+        email: "",
+        password: "",
+      },
+    };
   },
   methods: {
-    onSubmit(){
-      console.log(this.form)
-      UserService.register(this.form).then(res => {
-        console.log(res)
-      })
+    onSubmit() {
+      console.log(this.form);
+      UserService.register(this.form).then((res) => {
+        console.log(res);
+      });
     },
-    onReset(){
-      this.form.email = ''
-      this.form.name = ''
-      this.form.password = ''
-    }
+    onReset() {
+      this.form.email = "";
+      this.form.name = "";
+      this.form.password = "";
+    },
   },
 };
 </script>
 <style lang="scss">
 .form-container {
   margin-top: 8px;
-}.form-container {
+}
+.form-container {
   margin-top: 8px;
 }
-.button-submit{
-  margin-right:5px;
+.button-submit {
+  margin-right: 5px;
 }
 </style>

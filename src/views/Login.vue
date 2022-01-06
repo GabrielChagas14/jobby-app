@@ -7,7 +7,8 @@
           header-bg-variant="primary"
           header-text-variant="white"
           ><b-form @submit.prevent="onSubmit" @restet="onReset">
-            <b-form-group id="email" label="E-mail:" label-for="input-email">
+            <font-awesome-icon icon="envelope" class="icon" /> E-mail:
+            <b-form-group>
               <b-form-input
                 id="input-email"
                 type="text"
@@ -16,11 +17,8 @@
               >
               </b-form-input>
             </b-form-group>
-            <b-form-group
-              id="password"
-              label="Password:"
-              label-for="input-password"
-            >
+            <font-awesome-icon icon="lock" class="icon" /> Password:
+            <b-form-group>
               <b-form-input
                 id="input-email"
                 type="text"
@@ -29,7 +27,9 @@
               >
               </b-form-input>
             </b-form-group>
-            <b-button type="submit" variant="primary" class="button-submit">Submit</b-button>
+            <b-button type="submit" variant="primary" class="button-submit"
+              >Submit</b-button
+            >
             <b-button type="reset" variant="danger">Reset</b-button>
           </b-form>
         </b-card>
@@ -43,7 +43,7 @@ export default {
     return {
       form: {
         email: "",
-        password:''
+        password: "",
       },
     };
   },
@@ -52,5 +52,9 @@ export default {
 <style lang="scss">
 .form-container {
   margin-top: 8px;
+}
+.icon {
+  color: rgb(192, 192, 192);
+  margin-left: 5px;
 }
 </style>
