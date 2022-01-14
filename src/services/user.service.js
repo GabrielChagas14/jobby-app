@@ -2,11 +2,11 @@ import {http} from './config'
 
 export default {
 
-    listar:() => {
-        return http.get('user')
+    index:() => {
+        return http.get('v1/user')
     },
-    register:(user)=>{
-        return http.post('user', user)
+    store:(user)=>{
+        return http.post('v1/user', user)
     }
 
 }
