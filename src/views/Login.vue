@@ -1,9 +1,10 @@
 <template lang="">
   <div  class="background">
-    <b-container class="form-container">
+    <b-container>
       <b-row align-h="center" align-content="center">
         <b-col md="6">
           <b-card
+            class="form-container"
             header="Login"
             header-bg-variant="primary"
             header-text-variant="white"
@@ -40,7 +41,8 @@
   </div>
 </template>
 <script>
-import authService from "../services/auth.service";
+import auth from "../services/auth.service";
+import { mapActions } from "vuex"
 export default {
   data() {
     return {
@@ -51,10 +53,13 @@ export default {
     };
   },
   methods: {
+      ...mapActions(["setToken"]),
     onSubmit() {
-      authService.login(this.form).then((res) => {
-        console.log(res);
+      auth.login(this.form).then((res) => {
+        //console.log(res);
           if(res.status == 200){
+            //console.log(res.data.token)
+           this.setToken(res.data.token)
           this.$router.push("/Home");
         }
       });
@@ -67,6 +72,9 @@ export default {
 };
 </script>
 <style lang="scss">
+.form-container{
+  margin: 50px;
+}
 .icon {
   color: rgb(192, 192, 192);
   margin-left: 5px;

@@ -15,7 +15,7 @@
                 size="lg"
                 placeholder="Title"
                 class="title"
-                v-model="title"
+                v-model="form.title"
               >
               </b-form-input>
             </b-form-group>
@@ -24,7 +24,7 @@
                 size="lg"
                 placeholder="Description"
                 class="description"
-                v-model="description"
+                v-model="form.description"
               >
               </b-form-textarea>
             </b-form-group>
@@ -40,24 +40,26 @@
 </template>
 
 <script>
+import job from '../services/job.service';
 export default {
   data() {
     return {
       form: {
+        user_id: "1",
         title: "",
         description: "",
-        data: "2022-01-20",
+        due_date: "2022-01-20",
       },
     };
   },
   methods: {
       onSubmit() {
-      /*authService.login(this.form).then((res) => {
+      job.store(this.form).then((res) => {
         console.log(res);
           if(res.status == 200){
           this.$router.push("/Home");
         }
-      });*/
+      });
     },
     onReset() {
       this.form.email = "";
@@ -79,7 +81,6 @@ export default {
 .title {
   border: 0;
   border-bottom: 4px solid rgb(101, 101, 102);
-  padding-bottom: 0;
   box-shadow: none !important;
 }
 .title:focus {

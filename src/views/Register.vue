@@ -1,9 +1,10 @@
 <template lang="">
   <div class="background">
-    <b-container class="form-container">
+    <b-container>
       <b-row align-h="center" align-content="center">
         <b-col md="6">
           <b-card
+            class="form-container"
             header="Crie sue conta"
             header-bg-variant="primary"
             header-text-variant="white"
@@ -59,9 +60,6 @@ export default {
   mounted() {
     UserService.index().then((res) => {
       console.log(res.data);
-       if(res.status == 200){
-          this.$router.push("/Home");
-        }
     });
   },
   data() {
@@ -76,7 +74,7 @@ export default {
   methods: {
     onSubmit() {
       console.log(this.form);
-      UserService.register(this.form).then((res) => {
+      UserService.store(this.form).then((res) => {
         console.log(res.ok);
       });
     },
